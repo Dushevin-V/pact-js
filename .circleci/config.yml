@@ -6,29 +6,23 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Setup environment variables
-          command: |
-            echo "export PACT_BROKER_TOKEN=$PACT_BROKER_TOKEN" >> $BASH_ENV
-            echo "export PACT_BROKER_BASE_URL=$PACT_BROKER_BASE_URL" >> $BASH_ENV
-            echo "export BASE_URL=$BASE_URL" >> $BASH_ENV
-      - run: 
           name: Install project dependencies
           command: npm install
       - run:
           name: Run consumer contract tests
-          command: npm run test:consumer
+          command: jest consumer/consumer-contract.spec.js --testTimeout=20000
       - run:
           name: Publish contract to Pactflow
-          command: npm run publish:pact
+          command: pact-broker publish ./pacts --consumer-app-version 1.0 --broker-base-url=$PACT_BROKER_BASE_URL --broker-token=$PACT_BROKER_TOKEN
       - run:
           name: Run provider contract tests
-          command: npm run test:provider
+          command: jest provider/provider-contract.spec.js --testTimeout=30000
       - run:
           name: Tag latest provider version
-          command: npm run create:provider:tag
+          command: pact-broker create-version-tag --pacticipant movie-provider --version 1.0.0 --tag staging --broker-base-url=$PACT_BROKER_BASE_URL --broker-token=$PACT_BROKER_TOKEN
       - run:
           name: Can I deploy consumer?
-          command: npm run can:i:deploy:consumer
+          command: pact-broker can-i-deploy --pacticipant movie-consumer --version 1.0 --to staging --broker-base-url=$PACT_BROKER_BASE_URL
       - run:
           name: Tag latest consumer version
-          command: npm run create:consumer:tag
+          command: pact-broker create-version-tag --pacticipant movie-consumer --version 1.0 --tag staging --broker-base-url=$PACT_BROKER_BASE_URL --broker-token=$PACT_BROKER_TOKEN
