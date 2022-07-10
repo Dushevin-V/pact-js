@@ -10,6 +10,7 @@ jobs:
           command: |
             echo "export PACT_BROKER_TOKEN=$PACT_BROKER_TOKEN" >> $BASH_ENV
             echo "export PACT_BROKER_BASE_URL=$PACT_BROKER_BASE_URL" >> $BASH_ENV
+            echo "export BASE_URL=$BASE_URL" >> $BASH_ENV
       - run: 
           name: Install project dependencies
           command: npm install

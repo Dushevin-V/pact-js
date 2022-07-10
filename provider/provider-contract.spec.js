@@ -6,12 +6,12 @@ describe('Pact Verification', () => {
 
     const opts = {
       logLevel: "INFO",
-      providerBaseUrl: "https://simple-books-api.glitch.me",
+      providerBaseUrl: process.env.BASE_URL,
       provider: "BooksProvider",
       providerVersion: "1.0.0",
       providerVersionTags: ["test"],
-      pactBrokerUrl : "https://vaasd.pactflow.io",
-      pactBrokerToken: "78zSRQLVNfYUO8EEaxCh4w",
+      pactBrokerUrl : process.env.PACT_BROKER_BASE_URL,
+      pactBrokerToken: process.env.PACT_BROKER_TOKEN,
       requestFilter: (req, res, next) => {
         if (!req.headers["Authorization"]) {
           next();
