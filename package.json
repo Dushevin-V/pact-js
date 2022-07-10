@@ -1,0 +1,25 @@
+{
+  "name": "pact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:consumer": "jest consumer/consumer-contract.spec.js --testTimeout=20000",
+    "can:i:deploy:consumer": "pact-broker can-i-deploy --pacticipant movie-consumer --version 1.0 --to staging --broker-base-url https://vaasd.pactflow.io",
+    "can:i:deploy:provider": "pact-broker can-i-deploy --pacticipant movie-provider --version 1.0.0 --to staging --broker-base-url https://vaasd.pactflow.io",
+    "publish:pact": "pact-broker publish ./pacts --consumer-app-version 1.0 --broker-base-url https://vaasd.pactflow.io --broker-token 78zSRQLVNfYUO8EEaxCh4w",
+    "test:provider": "jest provider/provider-contract.spec.js --testTimeout=30000",
+    "create:provider:tag": "pact-broker create-version-tag --pacticipant movie-provider --version 1.0.0 --tag staging --broker-base-url https://vaasd.pactflow.io",
+    "create:consumer:tag": "pact-broker create-version-tag --pacticipant movie-consumer --version 1.0 --tag staging --broker-base-url https://vaasd.pactflow.io"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@pact-foundation/pact": "9.17.2",
+    "axios": "0.26.0",
+    "babel-jest": "^28.1.2",
+    "jest": "27.5.1"
+  }
+}

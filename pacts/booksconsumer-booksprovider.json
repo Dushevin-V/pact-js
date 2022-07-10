@@ -1,0 +1,364 @@
+{
+  "consumer": {
+    "name": "BooksConsumer"
+  },
+  "provider": {
+    "name": "BooksProvider"
+  },
+  "interactions": [
+    {
+      "description": "get all books",
+      "providerState": "status is ok",
+      "request": {
+        "method": "GET",
+        "path": "/status"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "status": "OK"
+        }
+      }
+    },
+    {
+      "description": "get all books",
+      "providerState": "books exist",
+      "request": {
+        "method": "GET",
+        "path": "/books"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": [
+          {
+            "id": 1,
+            "name": "The Russian",
+            "type": "fiction",
+            "available": true
+          },
+          {
+            "id": 2,
+            "name": "Just as I Am",
+            "type": "non-fiction",
+            "available": false
+          },
+          {
+            "id": 3,
+            "name": "The Vanishing Half",
+            "type": "fiction",
+            "available": true
+          },
+          {
+            "id": 4,
+            "name": "The Midnight Library",
+            "type": "fiction",
+            "available": true
+          },
+          {
+            "id": 5,
+            "name": "Untamed",
+            "type": "non-fiction",
+            "available": true
+          },
+          {
+            "id": 6,
+            "name": "Viscount Who Loved Me",
+            "type": "fiction",
+            "available": true
+          }
+        ]
+      }
+    },
+    {
+      "description": "get book with ID 2",
+      "providerState": "book with ID 2 exists",
+      "request": {
+        "method": "GET",
+        "path": "/books/2"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "id": 2,
+          "name": "Just as I Am",
+          "type": "non-fiction",
+          "available": false
+        }
+      }
+    },
+    {
+      "description": "get book with ID 7",
+      "providerState": "book with ID 7 does not exist",
+      "request": {
+        "method": "GET",
+        "path": "/books/7"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+        },
+        "body": {
+          "error": "No book with id 7"
+        }
+      }
+    },
+    {
+      "description": "generate token",
+      "providerState": "token generated",
+      "request": {
+        "method": "POST",
+        "path": "/api-clients",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "clientName": "Client",
+          "clientEmail": "testuser+40649@gmail.com"
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "accessToken": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        },
+        "matchingRules": {
+          "$.body.accessToken": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "place an order",
+      "providerState": "order placed",
+      "request": {
+        "method": "POST",
+        "path": "/orders",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        },
+        "body": {
+          "bookId": 3,
+          "customerName": "Client"
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "created": true,
+          "orderId": "Zp4wBGHJFINHGu36fiL7p"
+        },
+        "matchingRules": {
+          "$.body.orderId": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "place an order",
+      "providerState": "book unavailable",
+      "request": {
+        "method": "POST",
+        "path": "/orders",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        },
+        "body": {
+          "bookId": 2,
+          "customerName": "Client"
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "error": "This book is not in stock. Try again later."
+        }
+      }
+    },
+    {
+      "description": "get order using ID",
+      "providerState": "book with given ID exists",
+      "request": {
+        "method": "GET",
+        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "headers": {
+          "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "id": "Zp4wBGHJFINHGu36fiL7p",
+          "bookId": 1,
+          "customerName": "Darnell Upton",
+          "createdBy": "a484b29c4d2accbbd27733305984cd7ce1af295569c3c615339e93fa3f882ec5",
+          "quantity": 1,
+          "timestamp": 1657212838548
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.bookId": {
+            "match": "type"
+          },
+          "$.body.customerName": {
+            "match": "type"
+          },
+          "$.body.createdBy": {
+            "match": "type"
+          },
+          "$.body.timestamp": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "get book with ID hdxbc2Ut65wQTutsha6w",
+      "providerState": "order with ID hdxbc2Ut65wQTutsha6w does not exist",
+      "request": {
+        "method": "GET",
+        "path": "/orders/hdxbc2Ut65wQTutsha6w",
+        "headers": {
+          "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+        },
+        "body": {
+          "error": "No order with id hdxbc2Ut65wQTutsha6w."
+        }
+      }
+    },
+    {
+      "description": "update an order",
+      "providerState": "order updated",
+      "request": {
+        "method": "PATCH",
+        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        },
+        "body": {
+          "customerName": "Client Updated"
+        }
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+        }
+      }
+    },
+    {
+      "description": "get order with ID Zp4wBGHJFINHGu36fiL7p",
+      "providerState": "updates into order applied",
+      "request": {
+        "method": "GET",
+        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "headers": {
+          "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "id": "Zp4wBGHJFINHGu36fiL7p",
+          "bookId": 1,
+          "customerName": "Client Updated",
+          "createdBy": "a484b29c4d2accbbd27733305984cd7ce1af295569c3c615339e93fa3f882ec5",
+          "quantity": 1,
+          "timestamp": 1657212838548
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.bookId": {
+            "match": "type"
+          },
+          "$.body.customerName": {
+            "match": "type"
+          },
+          "$.body.createdBy": {
+            "match": "type"
+          },
+          "$.body.timestamp": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "delete an order",
+      "providerState": "order deleted",
+      "request": {
+        "method": "DELETE",
+        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "headers": {
+          "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        }
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+        }
+      }
+    },
+    {
+      "description": "get order with ID Zp4wBGHJFINHGu36fiL7p",
+      "providerState": "deleted order exists no more",
+      "request": {
+        "method": "GET",
+        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "headers": {
+          "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "error": "No order with id Zp4wBGHJFINHGu36fiL7p."
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
