@@ -8,7 +8,7 @@ describe('Pact Verification', () => {
       logLevel: "INFO",
       providerBaseUrl: process.env.BASE_URL,
       provider: "BooksProvider",
-      providerVersion: "1.0.0",
+      providerVersion: "1.0.1",
       providerVersionTags: ["test"],
       pactBrokerUrl : process.env.PACT_BROKER_BASE_URL,
       pactBrokerToken: process.env.PACT_BROKER_TOKEN,
