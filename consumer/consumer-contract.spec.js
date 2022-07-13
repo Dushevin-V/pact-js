@@ -12,7 +12,7 @@ const provider = new Pact({
 });
 
 let token
-const orderID = "AG7HMPYQvZDEFUQtfrrcn"
+const orderID = "YfmrPvV5K4ys4Ta70dkMX"
 
 describe("API Pact test", () => {
 
@@ -26,7 +26,7 @@ describe("API Pact test", () => {
       // set up Pact interactions
       await provider.addInteraction({
         state: 'status is ok',
-        uponReceiving: 'get all books',
+        uponReceiving: 'request status',
         withRequest: {
           method: 'GET',
           path: '/status',
@@ -353,7 +353,7 @@ describe("API Pact test", () => {
       }
       // set up Pact interactions
       await provider.addInteraction({
-        state: "book with given ID exists",
+        state: "order with ID exists",
         uponReceiving: "get order using ID",
         withRequest: {
           method: 'GET',

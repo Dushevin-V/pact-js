@@ -7,7 +7,7 @@
   },
   "interactions": [
     {
-      "description": "get all books",
+      "description": "request status",
       "providerState": "status is ok",
       "request": {
         "method": "GET",
@@ -122,7 +122,7 @@
         },
         "body": {
           "clientName": "Client",
-          "clientEmail": "testuser+40649@gmail.com"
+          "clientEmail": "testuser+36805@gmail.com"
         }
       },
       "response": {
@@ -162,7 +162,7 @@
         },
         "body": {
           "created": true,
-          "orderId": "Zp4wBGHJFINHGu36fiL7p"
+          "orderId": "AG7HMPYQvZDEFUQtfrrcn"
         },
         "matchingRules": {
           "$.body.orderId": {
@@ -198,10 +198,10 @@
     },
     {
       "description": "get order using ID",
-      "providerState": "book with given ID exists",
+      "providerState": "order with ID exists",
       "request": {
         "method": "GET",
-        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "path": "/orders/AG7HMPYQvZDEFUQtfrrcn",
         "headers": {
           "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
         }
@@ -212,7 +212,7 @@
           "Content-Type": "application/json; charset=utf-8"
         },
         "body": {
-          "id": "Zp4wBGHJFINHGu36fiL7p",
+          "id": "AG7HMPYQvZDEFUQtfrrcn",
           "bookId": 1,
           "customerName": "Darnell Upton",
           "createdBy": "a484b29c4d2accbbd27733305984cd7ce1af295569c3c615339e93fa3f882ec5",
@@ -262,7 +262,7 @@
       "providerState": "order updated",
       "request": {
         "method": "PATCH",
-        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "path": "/orders/AG7HMPYQvZDEFUQtfrrcn",
         "headers": {
           "Content-Type": "application/json",
           "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
@@ -278,11 +278,11 @@
       }
     },
     {
-      "description": "get order with ID Zp4wBGHJFINHGu36fiL7p",
+      "description": "get order with ID AG7HMPYQvZDEFUQtfrrcn",
       "providerState": "updates into order applied",
       "request": {
         "method": "GET",
-        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "path": "/orders/AG7HMPYQvZDEFUQtfrrcn",
         "headers": {
           "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
         }
@@ -293,7 +293,7 @@
           "Content-Type": "application/json; charset=utf-8"
         },
         "body": {
-          "id": "Zp4wBGHJFINHGu36fiL7p",
+          "id": "AG7HMPYQvZDEFUQtfrrcn",
           "bookId": 1,
           "customerName": "Client Updated",
           "createdBy": "a484b29c4d2accbbd27733305984cd7ce1af295569c3c615339e93fa3f882ec5",
@@ -324,7 +324,7 @@
       "providerState": "order deleted",
       "request": {
         "method": "DELETE",
-        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "path": "/orders/AG7HMPYQvZDEFUQtfrrcn",
         "headers": {
           "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
         }
@@ -336,11 +336,11 @@
       }
     },
     {
-      "description": "get order with ID Zp4wBGHJFINHGu36fiL7p",
+      "description": "get order with ID AG7HMPYQvZDEFUQtfrrcn",
       "providerState": "deleted order exists no more",
       "request": {
         "method": "GET",
-        "path": "/orders/Zp4wBGHJFINHGu36fiL7p",
+        "path": "/orders/AG7HMPYQvZDEFUQtfrrcn",
         "headers": {
           "Authorization": "d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6"
         }
@@ -351,7 +351,7 @@
           "Content-Type": "application/json; charset=utf-8"
         },
         "body": {
-          "error": "No order with id Zp4wBGHJFINHGu36fiL7p."
+          "error": "No order with id AG7HMPYQvZDEFUQtfrrcn."
         }
       }
     }
