@@ -7,7 +7,7 @@
     "test:consumer": "jest consumer/consumer-contract.spec.js --testTimeout=20000",
     "can:i:deploy:consumer": "pact-broker can-i-deploy --pacticipant BooksConsumer --version 1.0.2 --to staging --broker-base-url=$PACT_BROKER_BASE_URL",
     "can:i:deploy:provider": "pact-broker can-i-deploy --pacticipant BooksProvider --version 1.0.1 --to staging --broker-base-url=$PACT_BROKER_BASE_URL",
-    "publish:pact": "pact-broker publish ./pacts --consumer-app-version 1.0.1 --broker-base-url=$PACT_BROKER_BASE_URL --broker-token=$PACT_BROKER_TOKEN",
+    "publish:pact": "pact-broker publish ./pacts --consumer-app-version 1.0.2 --broker-base-url=$PACT_BROKER_BASE_URL --broker-token=$PACT_BROKER_TOKEN",
     "test:provider": "jest provider/provider-contract.spec.js --testTimeout=30000",
     "create:provider:tag": "pact-broker create-version-tag --pacticipant BooksProvider --version 1.0.1 --tag staging --broker-base-url=$PACT_BROKER_BASE_URL --broker-token=$PACT_BROKER_TOKEN",
     "create:consumer:tag": "pact-broker create-version-tag --pacticipant BooksConsumer --version 1.0.2 --tag staging --broker-base-url=$PACT_BROKER_BASE_URL --broker-token=$PACT_BROKER_TOKEN"
