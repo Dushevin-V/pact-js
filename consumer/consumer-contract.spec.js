@@ -252,7 +252,7 @@ describe("API Pact test", () => {
       // make request to Pact mock server
       const response = await api.registerAPIClient(name, email);
       expect(response).toEqual({
-        "accessToken": like("d263d23688a20da3dffd78f7d825ebaa7a12941a40472cf0b4f4be0f786660b6").contents
+        "accessToken": like("d850a25d98612ef9027ddcae8ca77f57abac32fdc1683d234454e99c9584c70a").contents
       });
 
       token = response.accessToken
