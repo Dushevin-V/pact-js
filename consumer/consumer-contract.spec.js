@@ -11,8 +11,8 @@ const provider = new Pact({
   dir: path.resolve(process.cwd(), 'pacts'),
 });
 
-let token
-const orderID = "3pddtVDcJ50S8TTFGXQW9"
+const orderID = "kB17nVMRqcnbQ4FHAAaxs"
+const token = '867e84fdb47a64f55622964342a9f95d45c9dd0d5b441c9590aa2020a1530cf1'
 
 describe("API Pact test", () => {
 
@@ -242,7 +242,7 @@ describe("API Pact test", () => {
             'Content-Type': 'application/json; charset=utf-8'
           },
           body: {
-            "accessToken": like("d850a25d98612ef9027ddcae8ca77f57abac32fdc1683d234454e99c9584c70a")
+            "accessToken": like(token)
           }
         },
       });
@@ -252,10 +252,9 @@ describe("API Pact test", () => {
       // make request to Pact mock server
       const response = await api.registerAPIClient(name, email);
       expect(response).toEqual({
-        "accessToken": like("d850a25d98612ef9027ddcae8ca77f57abac32fdc1683d234454e99c9584c70a").contents
+        "accessToken": like(token).contents
       });
 
-      token = response.accessToken
 
     });
   })

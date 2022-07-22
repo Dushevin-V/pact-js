@@ -12,6 +12,7 @@ describe('Pact Verification', () => {
       providerVersionTags: ["test"],
       pactBrokerUrl : process.env.PACT_BROKER_BASE_URL,
       pactBrokerToken: process.env.PACT_BROKER_TOKEN,
+
       requestFilter: (req, res, next) => {
         if (!req.headers["Authorization"]) {
           next();
