@@ -16,8 +16,8 @@ To use Pactflow, register for their free developer plan and export your Pactflow
 
 ## Note
 
-Current framework has a major flaw. As it utilises an existing book API, order ID used in consumer tests should also be real. 
-So before running the consumer part be sure to update the const orderID either with a new order ID or utilise the existing one. 
+Current framework has a major flaw. As it utilises an existing book API, order ID and auth token used in consumer tests should also be real. 
+So before running the consumer part make sure to update the auth token and const orderID either with a new order ID or utilise the existing one. 
  
 
 ## Running the tests
